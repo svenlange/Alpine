@@ -19,6 +19,7 @@
 package alpine.filters;
 
 import alpine.auth.ApiKeyAuthenticationService;
+import alpine.auth.GitLabAuthenticationService;
 import alpine.auth.JwtAuthenticationService;
 import alpine.logging.Logger;
 import org.glassfish.jersey.server.ContainerRequest;
@@ -69,6 +70,17 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 }
             }
 
+            final GitLabAuthenticationService gitlabAuthService = new GitLabAuthenticationService(request);
+            if (gitlabAuthService.isSpecified()) {
+                try {
+                    principal = gitlabAuthService.authenticate();
+                } catch (AuthenticationException e) {
+//                    LOGGER.info(SecurityMarkers.SECURITY_FAILURE, "Invalid API key asserted");
+//                    requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+//                    return;
+                }
+            }
+
             final JwtAuthenticationService jwtAuthService = new JwtAuthenticationService(request);
             if (jwtAuthService.isSpecified()) {
                 try {
@@ -79,6 +91,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                     return;
                 }
             }
+
+
 
             if (principal == null) {
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
