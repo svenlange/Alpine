@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/stevespringett/Alpine.svg?branch=master)](https://travis-ci.org/stevespringett/Alpine)
+[![Build Status](https://github.com/stevespringett/Alpine/workflows/Maven%20CI/badge.svg)](https://github.com/stevespringett/Alpine/actions?workflow=Maven+CI)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/us.springett/alpine-parent/badge.svg)](https://maven-badges.herokuapp.com/maven-central/us.springett/alpine-parent)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cefa2866cbc24deeb7fbc83b8f71ad60)](https://www.codacy.com/app/stevespringett/Alpine?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stevespringett/Alpine&amp;utm_campaign=Badge_Grade)
 [![Dependency Status](https://img.shields.io/librariesio/github/stevespringett/Alpine.svg)](https://libraries.io/github/stevespringett/Alpine)
@@ -124,7 +124,7 @@ Maven Usage
 <parent>
     <groupId>us.springett</groupId>
     <artifactId>alpine-parent</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.2</version>
 </parent>
 
 <dependencies>
@@ -132,47 +132,10 @@ Maven Usage
     <dependency>
         <groupId>us.springett</groupId>
         <artifactId>alpine</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.2</version>
     </dependency>
 </dependencies>
 ```
-
-Why 'Alpine'
--
-Alt-right American politics has devised many insults against liberal thought
-and the people who practice it. The term 'snowflake' is often applied to 
-such people as a derogatory insult in the absence of their own critical 
-thinking ability. Although a creative term, it's highly ineffective and
-does nothing to address global concerns. So 'Alpine' is the public celebration
-of being a 'snowflake', named after the blankets of snow that cover the French
-Alps. Besides, 'Alpine' has a certain je ne sais quoi to it.
-
-Open source is truly one of the great liberal ideals. So Alpine is released
-with an equally liberal Apache 2.0 license.
-
-Alpine is also the brand name of high-end car audio equipment, a hobby I was
-passionate about in my teens and twenties when I built many systems and often
-competed in various sound-offs in Illinois and Wisconsin. The name is nostalgic
-and brings to me a certain joy.
-
-Alpine is not affiliated with the Docker container image by the same name. It's
-interesting that both projects have minimalism as a goal, but this is merely
-coincidence.
-
-Is Alpine For You
--
-My opinions are just that, mine. They will evolve over time. However, my belief
-in sticking with open standards and not having to conform to the conventions of
-a specific framework will likely never change. Alpine is lightweight, 
-standards-based, and framework-free. If this appeals to you, give Alpine a try. 
-
-Projects Using Alpine
--
-If your open source or commercial project is using Alpine, feel free to add its
-name:
-
-* [Hakbot Origin Controller](https://github.com/hakbot/hakbot-origin-controller)
-* [OWASP Dependency-Track](https://dependencytrack.org)
 
 Copyright & License
 -

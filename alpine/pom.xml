@@ -22,13 +22,13 @@
     <parent>
         <groupId>us.springett</groupId>
         <artifactId>alpine-parent</artifactId>
-        <version>1.5.1-SNAPSHOT</version>
+        <version>1.6.3-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>us.springett</groupId>
     <artifactId>alpine</artifactId>
     <packaging>jar</packaging>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.6.3-SNAPSHOT</version>
 
     <name>Alpine</name>
     <description>
@@ -71,14 +71,6 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
-                            <!--
-                            <additionalOptions>
-                                <additionalOption>${javadoc.opts}</additionalOption>
-                            </additionalOptions>
-                            -->
-                            <javadocExecutable>${java.home}/../bin/javadoc</javadocExecutable>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
