@@ -70,7 +70,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 }
             }
 
-            final GitLabAuthenticationService gitlabAuthService = new GitLabAuthenticationService(request);
+            final GitLabAuthenticationService gitlabAuthService = new GitLabAuthenticationService("", "", request);
             if (gitlabAuthService.isSpecified()) {
                 try {
                     principal = gitlabAuthService.authenticate();

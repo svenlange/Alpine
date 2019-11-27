@@ -200,6 +200,13 @@
             <artifactId>commons-collections4</artifactId>
             <version>${lib.commons.collections4.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+
         <!-- Server architecture -->
         <dependency>
             <groupId>javax</groupId>
