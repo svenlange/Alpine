@@ -19,7 +19,7 @@
 package alpine.filters;
 
 import alpine.auth.ApiKeyAuthenticationService;
-import alpine.auth.GitLabAuthenticationService;
+import alpine.auth.gitlab.GitLabAuthenticationService;
 import alpine.auth.JwtAuthenticationService;
 import alpine.logging.Logger;
 import org.glassfish.jersey.server.ContainerRequest;
@@ -70,7 +70,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 }
             }
 
-            final GitLabAuthenticationService gitlabAuthService = new GitLabAuthenticationService("", "", request);
+            final GitLabAuthenticationService gitlabAuthService = new GitLabAuthenticationService(request);
             if (gitlabAuthService.isSpecified()) {
                 try {
                     principal = gitlabAuthService.authenticate();
