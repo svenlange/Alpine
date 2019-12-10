@@ -127,7 +127,7 @@ public class Config {
         LDAP_USERS_SEARCH_FILTER  ("alpine.ldap.users.search.filter",   null),
         LDAP_USER_PROVISIONING    ("alpine.ldap.user.provisioning",     false),
         LDAP_TEAM_SYNCHRONIZATION ("alpine.ldap.team.synchronization",  false),
-        GITLAB_SERVER_URL          ("alpine.gitlab.server.url",         null),
+        GITLAB_SERVER_URL         ("alpine.gitlab.server.url",          null),
         GITLAB_APPLICATION_ID     ("alpine.gitlab.application.id",      null),
         GITLAB_APPLICATION_SECRET ("alpine.gitlab.application.secret",  null),
         HTTP_PROXY_ADDRESS        ("alpine.http.proxy.address",         null),

@@ -1,0 +1,14 @@
+{
+  "groups" : [
+    "mygroupb",
+    "mygroupa"
+  ],
+  "profile" : "http://dieter/root",
+  "email" : "admin@example.com",
+  "sub" : "1",
+  "sub_legacy" : "f2e9abc632b8938d27dd5e935f2abd5bb022d4f41b36fef9adc37182303fc825",
+  "nickname" : "root",
+  "name" : "Administrator",
+  "email_verified" : true,
+  "picture" : "https://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&d=identicon"
+}

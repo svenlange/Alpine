@@ -6,6 +6,7 @@ import alpine.Config;
 import alpine.Config.AlpineKey;
 import java.net.URI;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -16,7 +17,7 @@ public class GitLabServerWrapper {
   private String GITLAB_APPLICATION_ID = Config.getInstance().getProperty(AlpineKey.GITLAB_APPLICATION_ID);
   private String GITLAB_APPLICATION_SECRET = Config.getInstance().getProperty(AlpineKey.GITLAB_APPLICATION_SECRET);
 
-
+  // todo add state parameter
   public CloseableHttpResponse auth(String code) {
     try (CloseableHttpClient httpclient = createDefault();) {
       URI uri = new URIBuilder(GITLAB_SERVER_URL)
@@ -31,24 +32,26 @@ public class GitLabServerWrapper {
       HttpPost authRequest = new HttpPost(uri);
       return httpclient.execute(authRequest);
 
-
     } catch (Exception e) {
-      e.printStackTrace();
+      e.printStackTrace(); // todo
     }
     return null;
   }
 
+  public CloseableHttpResponse getUserInfo(String access_token) {
+    try (CloseableHttpClient httpclient = createDefault();) {
+      URI uri = new URIBuilder(GITLAB_SERVER_URL)
+          .setPath("/oauth/userinfo")
+          .setParameter("access_token", access_token)
+          .build();
 
-  public void setGitlabServerUrl(String gitlabServerUrl) {
-    this.GITLAB_SERVER_URL = gitlabServerUrl;
-  }
+      HttpGet authRequest = new HttpGet(uri);
+      return httpclient.execute(authRequest);
 
-  public void setGitlabApplicationId(String gitlabApplicationId) {
-    this.GITLAB_APPLICATION_ID = gitlabApplicationId;
-  }
-
-  public void setGitlabApplicationSecret(String gitlabApplicationSecret) {
-    this.GITLAB_APPLICATION_SECRET = gitlabApplicationSecret;
+    } catch (Exception e) {
+      e.printStackTrace(); // todo
+    }
+    return null;
   }
 
 }

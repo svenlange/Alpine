@@ -4,6 +4,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.http.HttpStatus.SC_OK;
 
 import alpine.auth.AuthenticationService;
+import alpine.model.GitLabUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.URI;
@@ -11,6 +12,7 @@ import java.security.Principal;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import javax.naming.AuthenticationException;
+import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -54,13 +56,28 @@ public class GitLabAuthenticationService implements AuthenticationService {
       throw new AuthenticationException();
     }
 
-    String username = gitLabServerWrapper.getUserInfo();
-
     GitLabResponse gitLabResponse = getGitLabResponse(response);
-
     System.out.println(gitLabResponse);
 
-    return null;
+    CloseableHttpResponse response2 = gitLabServerWrapper.getUserInfo(gitLabResponse.getAccess_token());
+    GitLabUserInfo gitLabUserInfo = getGitLabUserInfo(response2);
+
+    GitLabUser user = new GitLabUser();
+    user.setEmail(gitLabUserInfo.getEmail());
+    user.setUsername(gitLabUserInfo.getNickname());
+    return user;
+  }
+
+  private GitLabUserInfo getGitLabUserInfo(CloseableHttpResponse response) {
+    GitLabUserInfo gitLabUserInfo = null;
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      HttpEntity entity = response.getEntity();
+      gitLabUserInfo = mapper.readValue(entity.getContent(), GitLabUserInfo.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return gitLabUserInfo;
   }
 
   private GitLabResponse getGitLabResponse(CloseableHttpResponse response) {

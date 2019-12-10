@@ -80,11 +80,21 @@ public class GitLabAuthenticationServiceTest {
 
     when(gitLabServerWrapperMock.auth(anyString())).thenReturn(closeableHttpResponseMock);
 
+    //todo mock wrapper.getUserInfo
+    CloseableHttpResponse closeableHttpResponseMock2 = mock(CloseableHttpResponse.class);
+    when(closeableHttpResponseMock2.getStatusLine()).thenReturn(new BasicStatusLine(new ProtocolVersion("http", 1, 1), 200, "yeah"));
+    BasicHttpEntity basicHttpEntity2 = new BasicHttpEntity();
+    basicHttpEntity2.setContent(GitLabAuthenticationServiceTest.class.getResourceAsStream("userinfo.json"));
+    when(closeableHttpResponseMock2.getEntity()).thenReturn(basicHttpEntity2);
+
+    when(gitLabServerWrapperMock.getUserInfo(anyString())).thenReturn(closeableHttpResponseMock2);
+
     GitLabAuthenticationService gas = new GitLabAuthenticationService(requestContextMock);
     gas.setGitLabServerWrapper(gitLabServerWrapperMock);
 
     Principal principal = gas.authenticate();
 
     assertNotNull(principal);
+    assertEquals("admin@example.com", principal.getName());
   }
 }
